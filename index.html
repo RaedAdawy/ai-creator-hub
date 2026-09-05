@@ -59,7 +59,6 @@
     </div>
 
     <script>
-        // تحميل المفتاح المحفوظ إن وجد
         window.onload = function() {
             const savedKey = localStorage.getItem('gemini_api_key');
             if (savedKey) {
@@ -85,7 +84,7 @@
                 return null;
             }
 
-            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
             
             try {
                 const response = await fetch(url, {
@@ -98,7 +97,7 @@
 
                 const data = await response.json();
                 if (data.error) {
-                    alert('خطأ في المفتاح أو الخدمة: ' + data.error.message);
+                    alert('خطأ في الخدمة: ' + data.error.message);
                     return null;
                 }
                 return data.candidates[0].content.parts[0].text;
@@ -134,7 +133,7 @@
             resultBox.style.display = 'block';
             resultBox.innerHTML = '⏳ جاري كتابة وصف متوافق مع الـ SEO بواسطة الذكاء الاصطناعي...';
 
-            const prompt = `اكتب وصف فيديو يوتيوب احترافي ومتوافق مع خوارزميات الـ SEO للعنوان التالي: "${title}". النقاط الرئيسية المذكورة في الفيديو: "${keys}". اشمل في الوصف: مقدمة مشوقة، نقاط محتوى الفيديو، دعوة للاشتراك (CTA)، وهاشتاجات قوية ومناسبة.`;
+            const prompt = `اكتب وصف فيديو يوتيوب احترافي ومتوافق مع خوارزميات الـ SEO للعنوان التالي: "${title}". النقاط الرئيسية المذكورة في الفيديو: "${keys}". اشمل في الوصف: مقدمة مشوقة، نقاط محتوى الفيديو، دعوة للااشتراك (CTA)، وهاشتاجات قوية ومناسبة.`;
 
             const aiResponse = await callGemini(prompt);
             if (aiResponse) {
