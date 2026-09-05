@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Creator Hub - مركز أدوات صناع المحتوى</title>
+    <title>AI Creator Hub - أدوات الذكاء الاصطناعي</title>
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #0f172a; color: #f8fafc; margin: 0; padding: 0; text-align: center; }
         header { background-color: #1e293b; color: #fff; padding: 25px 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); border-bottom: 2px solid #38bdf8; }
@@ -13,74 +13,133 @@
         .tool-card { background: #1e293b; padding: 20px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); width: 90%; max-width: 480px; border: 1px solid #334155; text-align: right; }
         .tool-card h2 { margin: 0 0 15px; font-size: 20px; color: #38bdf8; text-align: center; }
         label { font-size: 14px; color: #cbd5e1; display: block; margin-bottom: 8px; font-weight: bold; }
-        input[type="text"], textarea { width: 92%; padding: 12px; border-radius: 8px; border: 1px solid #475569; background: #0f172a; color: #fff; font-size: 14px; margin-bottom: 15px; display: block; outline: none; font-family: inherit; }
+        input[type="text"], input[type="password"], textarea { width: 92%; padding: 12px; border-radius: 8px; border: 1px solid #475569; background: #0f172a; color: #fff; font-size: 14px; margin-bottom: 15px; display: block; outline: none; font-family: inherit; }
         textarea { resize: vertical; min-height: 70px; }
         .btn { width: 100%; padding: 12px; background-color: #38bdf8; color: #0f172a; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; transition: 0.2s; }
         .btn:active { transform: scale(0.98); }
-        .result-box { margin-top: 15px; padding: 15px; background: #0f172a; border-radius: 8px; border-right: 4px solid #38bdf8; display: none; font-size: 14px; line-height: 1.6; color: #e2e8f0; white-space: pre-line; }
-        .idea-item { margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #1e293b; }
+        .result-box { margin-top: 15px; padding: 15px; background: #0f172a; border-radius: 8px; border-right: 4px solid #38bdf8; display: none; font-size: 14px; line-height: 1.7; color: #e2e8f0; white-space: pre-wrap; text-align: right; }
+        .api-section { background: #1a2332; border: 1px dashed #38bdf8; border-radius: 12px; padding: 15px; margin-bottom: 10px; width: 90%; max-width: 480px; text-align: right; }
+        .api-section h3 { margin: 0 0 10px 0; font-size: 16px; color: #38bdf8; }
     </style>
 </head>
 <body>
     <header>
         <h1>AI Creator Hub 🚀</h1>
-        <p>مركز الأدوات الذكية لإنشاء المحتوى وتطوير القنوات</p>
+        <p>مركز الأدوات الذكية المدعوم بـ Google Gemini AI</p>
     </header>
 
     <div class="container">
+        <!-- إعداد مفتاح الـ API -->
+        <div class="api-section">
+            <h3>🔑 إعداد مفتاح الذكاء الاصطناعي (Gemini Key)</h3>
+            <label for="api-key">المفتاح الخاص بك:</label>
+            <input type="password" id="api-key" placeholder="إلصق مفتاح AIzaSy... هنا">
+            <button class="btn" style="background-color: #22c55e; color: #fff;" onclick="saveApiKey()">حفظ المفتاح 💾</button>
+        </div>
+
         <!-- الأداة الأولى: أفكار Shorts -->
         <div class="tool-card">
-            <h2>🎬 مولّد أفكار Shorts</h2>
+            <h2>🎬 مولّد أفكار Shorts الذكي</h2>
             <label for="topic">اكتب مجال محتواك:</label>
-            <input type="text" id="topic" placeholder="مثال: كمال أجسام، جيمنج، تقنية...">
-            <button class="btn" onclick="generateIdeas()">توليد الأفكار ✨</button>
+            <input type="text" id="topic" placeholder="مثال: كمال أجسام، تسويق، تقنية...">
+            <button class="btn" onclick="generateIdeasAI()">توليد الأفكار بالذكاء الاصطناعي ✨</button>
             <div id="results-ideas" class="result-box"></div>
         </div>
 
-        <!-- الأداة الثانية: وصف يوتيوب احترافي -->
+        <!-- الأداة الثانية: وصف يوتيوب SEO -->
         <div class="tool-card">
             <h2>📝 مولّد وصف يوتيوب (SEO)</h2>
             <label for="video-title">عنوان الفيديو:</label>
-            <input type="text" id="video-title" placeholder="مثال: أفضل تمارين لضخامة عضلة البايسبس">
+            <input type="text" id="video-title" placeholder="مثال: أفضل 5 تمارين لضخامة عضلة البايسبس">
             <label for="video-key">نقاط رئيسية في الفيديو:</label>
-            <textarea id="video-key" placeholder="مثال: التكنيك الصح، الأخطاء الشائعة، التغذية"></textarea>
-            <button class="btn" onclick="generateDescription()">توليد الوصف ✨</button>
+            <textarea id="video-key" placeholder="مثال: التكنيك الصحيح، الأخطاء الشائعة، نصائح التغذية"></textarea>
+            <button class="btn" onclick="generateDescriptionAI()">توليد الوصف بالذكاء الاصطناعي ✨</button>
             <div id="results-desc" class="result-box"></div>
         </div>
     </div>
 
     <script>
-        function generateIdeas() {
-            const topic = document.getElementById('topic').value.trim();
-            const resultBox = document.getElementById('results-ideas');
-            if(!topic) { alert('اكتب مجال المحتوى الأول يا بطل!'); return; }
-            resultBox.style.display = 'block';
-            resultBox.innerHTML = `
-                <div class="idea-item">🔥 <b>فكرة 1:</b> 3 أخطاء شائعة في مجال (${topic}) تدمّر نتائجك!</div>
-                <div class="idea-item">💡 <b>فكرة 2:</b> سر لا يعرفه 90% من المهتمين بـ (${topic}).</div>
-                <div class="idea-item">🚀 <b>فكرة 3:</b> خطوة واحدة بسيطة هتطور مستواك في (${topic}) فوراً.</div>
-            `;
+        // تحميل المفتاح المحفوظ إن وجد
+        window.onload = function() {
+            const savedKey = localStorage.getItem('gemini_api_key');
+            if (savedKey) {
+                document.getElementById('api-key').value = savedKey;
+            }
+        };
+
+        function saveApiKey() {
+            const key = document.getElementById('api-key').value.trim();
+            if (!key) { alert('من فضلك ادخل المفتاح أولاً!'); return; }
+            localStorage.setItem('gemini_api_key', key);
+            alert('تم حفظ المفتاح بنجاح! جاهز لاستخدام الذكاء الاصطناعي 🚀');
         }
 
-        function generateDescription() {
+        function getApiKey() {
+            return localStorage.getItem('gemini_api_key') || document.getElementById('api-key').value.trim();
+        }
+
+        async function callGemini(prompt) {
+            const apiKey = getApiKey();
+            if (!apiKey) {
+                alert('من فضلك ادخل مفتاح Gemini API واحفظه في الخانة الأعلى أولاً!');
+                return null;
+            }
+
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+            
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{ parts: [{ text: prompt }] }]
+                    })
+                });
+
+                const data = await response.json();
+                if (data.error) {
+                    alert('خطأ في المفتاح أو الخدمة: ' + data.error.message);
+                    return null;
+                }
+                return data.candidates[0].content.parts[0].text;
+            } catch (err) {
+                alert('حدث خطأ أثناء الاتصال بالذكاء الاصطناعي.');
+                console.error(err);
+                return null;
+            }
+        }
+
+        async function generateIdeasAI() {
+            const topic = document.getElementById('topic').value.trim();
+            const resultBox = document.getElementById('results-ideas');
+            if (!topic) { alert('اكتب مجال المحتوى أولاً!'); return; }
+
+            resultBox.style.display = 'block';
+            resultBox.innerHTML = '⏳ جاري التفكير وتوليد أفكار حصرية بواسطة الذكاء الاصطناعي...';
+
+            const prompt = `أنت خبير في صناعة المحتوى على يوتيوب شورتس وتيك توك. أعطني 3 أفكار فيديوهات شورتس مبتكرة وجذابة جداً في مجال (${topic}). لكل فكرة اعطني: العنوان المشوق، والقلاب (Hook) لفرملة المشاهد في أول 3 ثوانٍ.`;
+
+            const aiResponse = await callGemini(prompt);
+            if (aiResponse) {
+                resultBox.innerHTML = aiResponse;
+            }
+        }
+
+        async function generateDescriptionAI() {
             const title = document.getElementById('video-title').value.trim();
             const keys = document.getElementById('video-key').value.trim();
             const resultBox = document.getElementById('results-desc');
-            if(!title) { alert('اكتب عنوان الفيديو الأول يا بطل!'); return; }
+            if (!title) { alert('اكتب عنوان الفيديو أولاً!'); return; }
 
             resultBox.style.display = 'block';
-            resultBox.innerHTML = `
-📌 <b>وصف الفيديو:</b>
-في هذا الفيديو نتحدث بالتفصيل عن <b>${title}</b>. إذا كنت تبحث عن نتائج حقيقية وتطوير مستواك، فهذا المقطع مصمم خصيصاً لك!
+            resultBox.innerHTML = '⏳ جاري كتابة وصف متوافق مع الـ SEO بواسطة الذكاء الاصطناعي...';
 
-🎯 <b>أهم المحاور في الفيديو:</b>
-${keys ? keys : '- شرح عملي خطوة بخطوة\n- نصائح حصرية لزيادة الكفاءة'}
+            const prompt = `اكتب وصف فيديو يوتيوب احترافي ومتوافق مع خوارزميات الـ SEO للعنوان التالي: "${title}". النقاط الرئيسية المذكورة في الفيديو: "${keys}". اشمل في الوصف: مقدمة مشوقة، نقاط محتوى الفيديو، دعوة للاشتراك (CTA)، وهاشتاجات قوية ومناسبة.`;
 
-🔔 <b>لا تنسَ الاشتراك في القناة وتفعيل زر الجرس ليصلك كل جديد!</b>
-
-🏷️ <b>الهاشتاجات المقترحة:</b>
-#صناع_المحتوى #${title.replace(/\s+/g, '_')} #تطوير_المحتوى #يوتيوب
-            `;
+            const aiResponse = await callGemini(prompt);
+            if (aiResponse) {
+                resultBox.innerHTML = aiResponse;
+            }
         }
     </script>
 </body>
