@@ -3,55 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Creator Hub - أدوات الذكاء الاصطناعي</title>
+    <title>AI Creator Hub - مركز أدوات صناع المحتوى</title>
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #0f172a; color: #f8fafc; margin: 0; padding: 0; text-align: center; }
         header { background-color: #1e293b; color: #fff; padding: 25px 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); border-bottom: 2px solid #38bdf8; }
         h1 { margin: 0; font-size: 26px; color: #38bdf8; }
-        p { font-size: 15px; margin-top: 8px; color: #94a3b8; }
-        .container { padding: 25px 15px; display: flex; flex-direction: column; align-items: center; }
-        .tool-card { background: #1e293b; margin: 15px 0; padding: 20px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); width: 90%; max-width: 450px; border: 1px solid #334155; text-align: right; }
-        .tool-card h2 { margin: 0 0 10px; font-size: 20px; color: #38bdf8; text-align: center; }
-        label { font-size: 14px; color: #cbd5e1; display: block; margin-bottom: 8px; }
-        input[type="text"] { width: 90%; padding: 12px; border-radius: 8px; border: 1px solid #475569; background: #0f172a; color: #fff; font-size: 15px; margin-bottom: 15px; display: block; outline: none; }
+        p { font-size: 14px; margin-top: 8px; color: #94a3b8; }
+        .container { padding: 20px 15px; display: flex; flex-direction: column; align-items: center; gap: 20px; }
+        .tool-card { background: #1e293b; padding: 20px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); width: 90%; max-width: 480px; border: 1px solid #334155; text-align: right; }
+        .tool-card h2 { margin: 0 0 15px; font-size: 20px; color: #38bdf8; text-align: center; }
+        label { font-size: 14px; color: #cbd5e1; display: block; margin-bottom: 8px; font-weight: bold; }
+        input[type="text"], textarea { width: 92%; padding: 12px; border-radius: 8px; border: 1px solid #475569; background: #0f172a; color: #fff; font-size: 14px; margin-bottom: 15px; display: block; outline: none; font-family: inherit; }
+        textarea { resize: vertical; min-height: 70px; }
         .btn { width: 100%; padding: 12px; background-color: #38bdf8; color: #0f172a; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; transition: 0.2s; }
         .btn:active { transform: scale(0.98); }
-        .result-box { margin-top: 15px; padding: 15px; background: #0f172a; border-radius: 8px; border-right: 4px solid #38bdf8; display: none; font-size: 14px; line-height: 1.6; color: #e2e8f0; }
+        .result-box { margin-top: 15px; padding: 15px; background: #0f172a; border-radius: 8px; border-right: 4px solid #38bdf8; display: none; font-size: 14px; line-height: 1.6; color: #e2e8f0; white-space: pre-line; }
         .idea-item { margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #1e293b; }
     </style>
 </head>
 <body>
     <header>
         <h1>AI Creator Hub 🚀</h1>
-        <p>دليلك السريع لأفضل أدوات الذكاء الاصطناعي لصناع المحتوى</p>
+        <p>مركز الأدوات الذكية لإنشاء المحتوى وتطوير القنوات</p>
     </header>
-    
+
     <div class="container">
+        <!-- الأداة الأولى: أفكار Shorts -->
         <div class="tool-card">
             <h2>🎬 مولّد أفكار Shorts</h2>
-            <label for="topic">اكتب مجال محتواك (مثال: جيمنج، لياقة، تقنية):</label>
-            <input type="text" id="topic" placeholder="مثال: كمال أجسام أو تكنولوجيا">
+            <label for="topic">اكتب مجال محتواك:</label>
+            <input type="text" id="topic" placeholder="مثال: كمال أجسام، جيمنج، تقنية...">
             <button class="btn" onclick="generateIdeas()">توليد الأفكار ✨</button>
-            
-            <div id="results" class="result-box"></div>
+            <div id="results-ideas" class="result-box"></div>
+        </div>
+
+        <!-- الأداة الثانية: وصف يوتيوب احترافي -->
+        <div class="tool-card">
+            <h2>📝 مولّد وصف يوتيوب (SEO)</h2>
+            <label for="video-title">عنوان الفيديو:</label>
+            <input type="text" id="video-title" placeholder="مثال: أفضل تمارين لضخامة عضلة البايسبس">
+            <label for="video-key">نقاط رئيسية في الفيديو:</label>
+            <textarea id="video-key" placeholder="مثال: التكنيك الصح، الأخطاء الشائعة، التغذية"></textarea>
+            <button class="btn" onclick="generateDescription()">توليد الوصف ✨</button>
+            <div id="results-desc" class="result-box"></div>
         </div>
     </div>
 
     <script>
         function generateIdeas() {
             const topic = document.getElementById('topic').value.trim();
-            const resultBox = document.getElementById('results');
-            
-            if(!topic) {
-                alert('من فضلك اكتب مجال المحتوى الأول يا بطل!');
-                return;
-            }
-
+            const resultBox = document.getElementById('results-ideas');
+            if(!topic) { alert('اكتب مجال المحتوى الأول يا بطل!'); return; }
             resultBox.style.display = 'block';
             resultBox.innerHTML = `
                 <div class="idea-item">🔥 <b>فكرة 1:</b> 3 أخطاء شائعة في مجال (${topic}) تدمّر نتائجك!</div>
                 <div class="idea-item">💡 <b>فكرة 2:</b> سر لا يعرفه 90% من المهتمين بـ (${topic}).</div>
                 <div class="idea-item">🚀 <b>فكرة 3:</b> خطوة واحدة بسيطة هتطور مستواك في (${topic}) فوراً.</div>
+            `;
+        }
+
+        function generateDescription() {
+            const title = document.getElementById('video-title').value.trim();
+            const keys = document.getElementById('video-key').value.trim();
+            const resultBox = document.getElementById('results-desc');
+            if(!title) { alert('اكتب عنوان الفيديو الأول يا بطل!'); return; }
+
+            resultBox.style.display = 'block';
+            resultBox.innerHTML = `
+📌 <b>وصف الفيديو:</b>
+في هذا الفيديو نتحدث بالتفصيل عن <b>${title}</b>. إذا كنت تبحث عن نتائج حقيقية وتطوير مستواك، فهذا المقطع مصمم خصيصاً لك!
+
+🎯 <b>أهم المحاور في الفيديو:</b>
+${keys ? keys : '- شرح عملي خطوة بخطوة\n- نصائح حصرية لزيادة الكفاءة'}
+
+🔔 <b>لا تنسَ الاشتراك في القناة وتفعيل زر الجرس ليصلك كل جديد!</b>
+
+🏷️ <b>الهاشتاجات المقترحة:</b>
+#صناع_المحتوى #${title.replace(/\s+/g, '_')} #تطوير_المحتوى #يوتيوب
             `;
         }
     </script>
